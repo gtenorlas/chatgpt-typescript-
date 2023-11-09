@@ -1,13 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "ESNext",
-    "moduleResolution": "nodenext",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "lib": ["es2020"],
+    "module": "es2022",
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
     "strict": true,
-    "skipLibCheck": true,
-    "rootDir": "./src",
+    "sourceMap": true,
+    "target": "ESNext",
+    "types": ["node"],
     "outDir": "./build",
-  }
+    "noImplicitAny": false
+  },
+  "include": [
+    "./src/"
+  ],
+  "exclude": ["node_modules"]
 }
