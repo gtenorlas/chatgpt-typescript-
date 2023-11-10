@@ -1,3 +1,10 @@
+/*
+This Open AI chat assistance and thread is newly created for gpt-4-1106-preview. At this point in time,
+this model is not suitable for production
+*/
+
+
+
 // import the required dependencies
 require("dotenv").config();
 const OpenAI = require("openai");
@@ -102,3 +109,5 @@ async function main() {
 
 // Call the main function
 main();
+
+export{}

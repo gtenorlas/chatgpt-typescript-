@@ -5,7 +5,7 @@
   "main": "chatgpt.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node ./build/chatgpt.js",
+    "start": "tsc && node ./build/chatGpt.js",
     "chat": "node ./build/chatgpt.js"
   },
   "keywords": [],
