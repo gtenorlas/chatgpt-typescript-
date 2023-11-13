@@ -1,8 +1,15 @@
-require("dotenv").config();
+// require("dotenv").config();
+// const OpenAI = require("openai");
+// const promptFunctionCall = require("./promptFunction");
+
+
 const OpenAI = require("openai");
+const dotenv = require("dotenv");
 const promptFunctionCall = require("./promptFunction");
 
-console.log("promptFunctionCall",promptFunctionCall.promptFunction)
+dotenv.config();
+
+console.log("promptFunctionCall", promptFunctionCall)
 
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY as string;
@@ -251,4 +258,5 @@ const main = async () => {
 }
 
 main();
+
 
