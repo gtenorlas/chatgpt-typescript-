@@ -28,7 +28,7 @@ const promptFunction = {
             "type": "array",
             "items": {
               "type": "number",
-              "description": "DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). Price must be related to the fields or subject specific to prompt's context, Instructions Designer or CopyWriter (Content), and in USD. No 0 allowed, must have value for both min and max cost"
+              "description": "Value must be >  0. DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). Price must be related to the fields or subject specific to prompt's context, Instructions Designer or CopyWriter (Content), and in USD. No 0 allowed, must have value for both min and max cost"
             }
           }
         }
@@ -57,7 +57,7 @@ const promptFunction = {
             "type": "array",
             "items": {
               "type": "number",
-              "description": "DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). Price must be related to the fields or subject specific to prompt's context, Voice Over (Auditory) and in USD. No 0 allowed, must have value for both min and max cost"
+              "description": "Value must be >  0. DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). Price must be related to the fields or subject specific to prompt's context, Voice Over (Auditory) and in USD. No 0 allowed, must have value for both min and max cost"
             }
           }
         }
@@ -73,7 +73,7 @@ const promptFunction = {
           },
           "details": {
             "type": "string",
-            "description": "Change the value of the details specific to the auditory's title and the prompt's context"
+            "description": "Change the value of the details specific to the visual's title and the prompt's context"
           },
           "hiringCost": {
             "type": "array",
@@ -86,7 +86,7 @@ const promptFunction = {
             "type": "array",
             "items": {
               "type": "number",
-              "description": "DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). Price must be related to the fields or subject specific to prompt's context, Video Production and Editing (Visual) and in USD. No 0 allowed, must have value for both min and max cost"
+              "description": "Value must be >  0. DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). Price must be related to the fields or subject specific to prompt's context, Video Production and Editing (Visual) and in USD. No 0 allowed, must have value for both min and max cost"
             }
           }
         }
@@ -102,7 +102,7 @@ const promptFunction = {
           },
           "details": {
             "type": "string",
-            "description": "Change the value of the details specific to the auditory's title and the prompt's context"
+            "description": "Change the value of the details specific to the distribution's title and the prompt's context"
           },
           "hiringCost": {
             "type": "array",
@@ -115,14 +115,43 @@ const promptFunction = {
             "type": "array",
             "items": {
               "type": "number",
-              "description": "DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). Price must be related to the fields or subject specific to prompt's context, Learning Management System (Distribution) and in USD. No 0 allowed, must have value for both min and max cost"
+              "description": "Value must be >  0. DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). Price must be related to the fields or subject specific to prompt's context, Learning Management System (Distribution) and in USD. No 0 allowed, must have value for both min and max cost"
+            }
+          }
+        }
+      },
+      "summary": {
+        "type": "object",
+        "description": "This section provides title, details, hiringCost, and DIYCost related to Total Estimate (Summary)",
+        "properties": {
+          "title": {
+            "type": "string",
+            "constant value": "Total Estimate (Summary)",
+            "description": "constant value (do not change) = Total Estimate (Summary)"
+          },
+          "details": {
+            "type": "string",
+            "description": "Change the value of the details specific to the summary's title and the prompt's context"
+          },
+          "hiringCost": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "description": "Required field. The total cost of min and max of the sum of hiringCost from content, auditory, visual, and distribution"
+            }
+          },
+          "DIYCost": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "description": "Required field. The total cost of min and max of the sum of DIYCost from content, auditory, visual, and distribution"
             }
           }
         }
       }
     },
     "required": [
-      "content", "auditory", "visual", "title", "details", "hiringCost", "DIYCost", "distribution"
+      "content", "auditory", "visual", "title", "details", "hiringCost", "DIYCost", "distribution", "summary"
     ]
   }
 };

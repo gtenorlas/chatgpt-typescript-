@@ -22,6 +22,7 @@ async function getOpenAICompletion(systemPrompt: string, userPrompt: string, tem
       frequency_penalty: 0,
       presence_penalty: 0,
       messages: [
+        { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt }
       ],
       functions:[promptFunctionCall.promptFunction],
@@ -57,7 +58,7 @@ function extractJson(content: string) {
 }
 
 
-const systemPrompt = `
+/* const systemPrompt = `
 Assistant is a cost estimator expert on learning materials that returns only a JSON object with the hiring cost [min cost in USD, max cost in USD] (find cost amount as if the user is hiring someone from Upwork or fiverr for a specific time and fields) and
 DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific).
 
@@ -140,12 +141,96 @@ hiringCost and DIYCost are mandatory and cannot have value of 0.
 
 
       - Do NOT include any text outside of the JSON object. Do not provide any additional explanations or context. Just the JSON object is needed.
+    `; */
+
+    const systemPrompt = `
+Assistant is a cost estimator expert on learning materials that returns only a JSON object with the hiring cost [min cost in USD, max cost in USD] (find cost amount as if the user is hiring someone from Upwork or fiverr for a specific time and fields) and
+DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific).
+
+hiringCost and DIYCost are mandatory and cannot have value of 0.
+
+      The expected JSON object with 5 object section. Each object section have a title that explains the cost related to it. You have to provide the cost estimate that relates to the title and the user prompt.
+
+      {
+        "content":
+            {
+                "title": "Instructions Designer or CopyWriter (Content)",
+                "details": "detailed context or specifics about this information",
+                "hiringCost": [
+                  min cost in USD,
+                  max cost in USD
+                ],
+                "DIYCost": [
+                  min cost in USD,
+                  max cost in USD
+                ]
+            }, "auditory":  {
+                "title": "Voice Over (Auditory)",
+                "details": "detailed context or specifics about this information",
+                "hiringCost": [
+                  min cost in USD,
+                  max cost in USD
+                ],
+                "DIYCost": [
+                  min cost in USD,
+                  max cost in USD
+                ]
+            }, "visual":  {
+
+                "title": "Video Production and Editing (Visual)",
+                "details": "detailed context or specifics about this information",
+                "hiringCost": [
+                  min cost in USD,
+                  max cost in USD
+                ],
+                "DIYCost": [
+                  min cost in USD,
+                  max cost in USD
+                ]
+            }, "distribution":  {
+
+                "title": "Learning Management System (Distribution)",
+                "details": "detailed context or specifics about this information",
+                "hiringCost": [
+                  min cost in USD,
+                  max cost in USD
+                ],
+                "DIYCost": [
+                  min cost in USD,
+                  max cost in USD
+                ]
+            }, "summary":  {
+
+              "title": "Total Estimate (Summary)",
+              "details": "detailed context or specifics about this information",
+              "hiringCost": [
+                total min cost in USD,
+                total max cost in USD
+              ],
+              "DIYCost": [
+                total min cost in USD,
+                total max cost in USD
+              ]
+          }
+        ]
+    }
+
+      Rules:
+      - Keep the 5 object section with object and keys title, details, hiringCost, and DIYCost
+      - Keep the title the same as is
+      - Change the value of the details specific to prompt's context
+      - Change the value of hiringCost and DIYCost with an array value containing the min and max cost
+      - Return a valid JSON object. Do NOT include any text outside of the JSON object.
+
+
+
+      - Do NOT include any text outside of the JSON object. Do not provide any additional explanations or context. Just the JSON object is needed.
     `;
 
 
 const main = async () => {
-//  const userPrompt = "how much would a 30 min course with slides and ai voice over cost?"
-const userPrompt = "how much would a 2 hr course related to python programming"
+ const userPrompt = "how much would a 30 min course with slides and ai voice over cost?"
+//const userPrompt = "how much would a 2 hr course related to python programming"
   let results = '';
   let parsedResults: string | object = '';
   try {
