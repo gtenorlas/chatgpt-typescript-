@@ -1,16 +1,16 @@
-const promptFunction ={
+const promptFunction = {
   "name": "getEstimate",
   "description": "Assistant is a cost estimator expert on learning materials that returns only a JSON object with the hiring cost [min cost in USD, max cost in USD] (find cost amount as if the user is hiring someone from Upwork or fiverr for a specific time and fields) and DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). hiringCost and DIYCost are mandatory and cannot have value of 0.",
   "parameters": {
     "type": "object",
     "properties": {
-      "content":{
+      "content": {
         "type": "object",
         "description": "This section provides title, details, hiringCost, and DIYCost related to Instructions Designer or CopyWriter (Content)",
         "properties": {
           "title": {
             "type": "string",
-            "constant value":"Instructions Designer or CopyWriter (Content)",
+            "constant value": "Instructions Designer or CopyWriter (Content)",
             "description": "constant value (do not change) = Instructions Designer or CopyWriter (Content)"
           },
           "details": {
@@ -33,13 +33,13 @@ const promptFunction ={
           }
         }
       },
-      "auditory":{
+      "auditory": {
         "type": "object",
         "description": "This section provides title, details, hiringCost, and DIYCost related to Voice Over (Auditory)",
         "properties": {
           "title": {
             "type": "string",
-            "constant value":"Voice Over (Auditory)",
+            "constant value": "Voice Over (Auditory)",
             "description": "constant value (do not change) = Voice Over (Auditory)"
           },
           "details": {
@@ -61,13 +61,42 @@ const promptFunction ={
             }
           }
         }
+      },
+      "visual": {
+        "type": "object",
+        "description": "This section provides title, details, hiringCost, and DIYCost related to Video Production and Editing (Visual)",
+        "properties": {
+          "title": {
+            "type": "string",
+            "constant value": "Video Production and Editing (Visual)",
+            "description": "constant value (do not change) = Video Production and Editing (Visual)"
+          },
+          "details": {
+            "type": "string",
+            "description": "Change the value of the details specific to the auditory's title and the prompt's context"
+          },
+          "hiringCost": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "description": "hiring cost [min cost in USD, max cost in USD] (find cost amount as if the user is hiring someone from Upwork or fiverr for a specific time, Video Production and Editing (Visual), and fields or subject specific to prompt's context) price must be in USD"
+            }
+          },
+          "DIYCost": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "description": "DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). Price must be related to the fields or subject specific to prompt's context, Video Production and Editing (Visual) and in USD. No 0 allowed, must have value for both min and max cost"
+            }
+          }
+        }
       }
     },
     "required": [
-      "content","auditory","title","details","hiringCost","DIYCost"
+      "content", "auditory", "visual", "title", "details", "hiringCost", "DIYCost"
     ]
   }
 };
 
 
-module.exports ={promptFunction}
+module.exports = { promptFunction }
