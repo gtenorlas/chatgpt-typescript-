@@ -90,10 +90,39 @@ const promptFunction = {
             }
           }
         }
+      },
+      "distribution": {
+        "type": "object",
+        "description": "This section provides title, details, hiringCost, and DIYCost related to Learning Management System (Distribution)",
+        "properties": {
+          "title": {
+            "type": "string",
+            "constant value": "Learning Management System (Distribution)",
+            "description": "constant value (do not change) = Learning Management System (Distribution)"
+          },
+          "details": {
+            "type": "string",
+            "description": "Change the value of the details specific to the auditory's title and the prompt's context"
+          },
+          "hiringCost": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "description": "hiring cost [min cost in USD, max cost in USD] (find cost amount as if the user is hiring someone from Upwork or fiverr for a specific time, Learning Management System (Distribution), and fields or subject specific to prompt's context) price must be in USD"
+            }
+          },
+          "DIYCost": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "description": "DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). Price must be related to the fields or subject specific to prompt's context, Learning Management System (Distribution) and in USD. No 0 allowed, must have value for both min and max cost"
+            }
+          }
+        }
       }
     },
     "required": [
-      "content", "auditory", "visual", "title", "details", "hiringCost", "DIYCost"
+      "content", "auditory", "visual", "title", "details", "hiringCost", "DIYCost", "distribution"
     ]
   }
 };
