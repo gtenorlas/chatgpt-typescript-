@@ -1,20 +1,21 @@
-{
+const promptFunction ={
   "name": "getEstimate",
   "description": "Assistant is a cost estimator expert on learning materials that returns only a JSON object with the hiring cost [min cost in USD, max cost in USD] (find cost amount as if the user is hiring someone from Upwork or fiverr for a specific time and fields) and DIY (Do it yourself) cost [min cost in USD, max cost in USD] (find the cost amount as if the user will be using the platform not limited to cohere, jasper, speechify, elevenlabs, descript, canva, nas.io, mighty networks, thinkific). hiringCost and DIYCost are mandatory and cannot have value of 0.",
   "parameters": {
     "type": "object",
     "properties": {
-      "content": {
+      "content":{
         "type": "object",
         "description": "This section provides title, details, hiringCost, and DIYCost related to Instructions Designer or CopyWriter (Content)",
         "properties": {
           "title": {
             "type": "string",
-            "description": "constant value = Instructions Designer or CopyWriter (Content)"
+            "constant value":"Instructions Designer or CopyWriter (Content)",
+            "description": "constant value (do not change) = Instructions Designer or CopyWriter (Content)"
           },
           "details": {
             "type": "string",
-            "description": "Change the value of the details specific to prompt's context"
+            "description": "Change the value of the details specific to the content's title and the prompt's context"
           },
           "hiringCost": {
             "type": "array",
@@ -37,4 +38,7 @@
       "content"
     ]
   }
-}
+};
+
+
+module.exports ={promptFunction}
