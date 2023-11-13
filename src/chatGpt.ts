@@ -144,6 +144,7 @@ hiringCost and DIYCost are mandatory and cannot have value of 0.
       The expected JSON object with 5 object section. Each object section have a title that explains the cost related to it. You have to provide the cost estimate that relates to the title and the user prompt.
 
       {
+        "originalPrompt" : "The original prompt",
         "content":
             {
                 "title": "Instructions Designer or CopyWriter (Content)",
@@ -210,6 +211,7 @@ hiringCost and DIYCost are mandatory and cannot have value of 0.
       Rules:
       - Keep the 5 object section with object and keys title, details, hiringCost, and DIYCost
       - Keep the title the same as is
+      - change the value of originalPrompt to the user's prompt
       - Change the value of the details specific to prompt's context
       - Change the value of hiringCost and DIYCost with an array value containing the min and max cost
       - Return a valid JSON object. Do NOT include any text outside of the JSON object.

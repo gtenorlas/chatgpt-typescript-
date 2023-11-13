@@ -4,6 +4,10 @@ const promptFunction = {
   "parameters": {
     "type": "object",
     "properties": {
+      "originalPrompt": {
+        "type": "string",
+        "description": "The original prompt"
+      },
       "content": {
         "type": "object",
         "description": "This section provides title, details, hiringCost, and DIYCost related to Instructions Designer or CopyWriter (Content)",
@@ -151,10 +155,10 @@ const promptFunction = {
       }
     },
     "required": [
-      "content", "auditory", "visual", "title", "details", "hiringCost", "DIYCost", "distribution", "summary"
+      "originalPrompt", "content", "auditory", "visual", "title", "details", "hiringCost", "DIYCost", "distribution", "summary"
     ]
   }
 };
 
 
-module.exports= { promptFunction }
+module.exports = { promptFunction }
