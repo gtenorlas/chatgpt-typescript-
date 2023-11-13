@@ -14,7 +14,10 @@ async function getOpenAICompletion(systemPrompt: string, userPrompt: string, tem
     const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo-1106', // gpt-3.5-turbo, gpt-4
       max_tokens: 500,
-      temperature,
+      temperature: 1.5,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt }
